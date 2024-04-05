@@ -1,0 +1,379 @@
+/*
+Foglio di stile per la gestione della grafica condivisa e uniforme tra le pagine;
+Vengono all'inizio settati i parametri di stile a seconda del media-type utilizzato (stampa, schermo, schermo ristretto) e 
+successivamente le proprieta' delle classi/tag/identificativi.
+
+Per la disposizione degli elementi, si e' fatto riferimento alle norme di buona progettazione tramite l'uso
+del CSS grid-layout.
+
+Per la codifica dei colori, sono stati privilegiati i colori web-smart per garantire una certa sicurezza riguardo una 
+corretta renderizzazione degli stessi.
+*/
+@media print{
+    /*
+        Vengono rimossi tutti gli elementi superflui che non contengono informazioni utili al lettore, quali il menu' di
+        navigazione, il logout per l'utente, i colori della pagina; viene inserita una indicazione circa l'indirizzo email
+        dell'autore al fine di renderlo piu' esplicito.
+    */
+    body{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 12pt;
+        background-color: white;
+        color: black; 
+    }
+    a{ text-decoration: underline;}
+    a::after{content: " (" attr(href) ")";}
+    .theMenu1, .theMenu2, .theMenu3, .theMenu4, .theMenu5{
+        display: none;
+    }    
+    .theHeader {
+        background-color: white;
+        color: black;
+    }
+    .theFooter {
+        background-color: white;
+        color: black;
+    }
+    .logout{
+        display: none;
+    }
+    button{
+        /*Non trasmette alcun tipo di informazione al lettore su carta, e pertanto puo' essere omesso.
+        Se l'utente volesse interagire con la pagina sarebbe obbligato a usare un browser, e li' potrebbe 
+        usufruire di queste funzionalita'*/
+        display:none;
+    }
+    .shortcut {
+        display: none;
+    }
+    #arch, #ing, #inf, #ges, #urb, #res{
+        display: none;
+    }
+}
+
+@media screen {
+    .theHeader { 
+        grid-area: header; 
+        font-size: 5rem;
+        background-color: #002266; 
+        color: white;
+        clear: both; /* non può avere elementi flottanti a sx o dx */
+        padding: 2vw;
+        margin: 0;
+    }
+
+    .theMenu1, .theMenu2, .theMenu3, .theMenu4, .theMenu5 {
+        grid-area: men1;
+        /* border: thin solid #228822; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.6rem;
+        padding: 2vw;
+    } 
+
+    .theMenu2 {
+        grid-area: men2;
+        /* border: thin solid blue; */
+        background-color: #ff8800; 
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.6rem;
+        padding: 2vw;
+    } 
+
+    .theMenu3 {
+        grid-area: men3;
+        /* border: thin solid blue; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.6rem;
+        padding: 2vw;
+    } 
+
+    .theMenu4 {
+        grid-area: men4;
+        /* border: thin solid blue; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.6rem;
+        padding: 2vw;
+    } 
+
+    .theMenu5 {
+        grid-area: men5;
+        /* border: thin solid blue; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.6rem;
+        padding: 2vw;
+    } 
+
+    .theMain {
+        grid-area: main;
+        float: left; /* non può avere elementi flottanti alla sx */
+        background-color: #eeeeff;
+    }
+
+    .theFooter {
+        grid-area: footer;
+        /* border-color: #ff8800; */
+        color: black;
+        background-color: #eeeeff;
+        /* border-style: groove; */
+        /* border-width: medium; */
+        clear: both;
+    }
+
+    .userInfo{
+        font-weight: bold;
+        grid-area: info;
+        background-color: #ff8800;
+        /* border-color: blue; */
+        text-align: right;
+        float: right;
+        font-size: 0.7rem;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-areas: 'header header header header header header'
+                             'men1 men2 men3 men4 men5 info'
+                             'main main main main main main'
+                             'main main main main main main'
+                             'main main main main main main'
+                             'footer footer footer footer footer footer';
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    main, footer, header {
+        font-size: smaller;
+    }
+
+    .menItem{
+        text-decoration: none;
+        color: black;
+        font-size: 110%;
+    }
+
+    .theHeader { 
+        grid-area: header; 
+        font-size: 2.5rem;
+        text-align: center;
+        /* border-width: thin; */
+        /* border-style: dotted; */
+        background-color: #002266; /* #0000ff */
+        color: white;
+        border-color: #ff8800;
+        clear: both; /* non puo' avere elementi flottanti a sx o dx */
+        padding: 0.5vw;
+        margin: 0;
+        height: 10vh;
+        border: thin solid white;
+    }
+
+    .theMenu1 {
+        grid-area: men1;
+        /* border: thin solid blue; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.7rem;
+        padding: 0.5vw;
+        border: thin solid white;
+    } 
+
+    .theMenu2 {
+        grid-area: men2;
+        /* border: thin solid blue; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.7rem;
+        padding: 0.5vw;
+        border: thin solid white;
+    } 
+
+    .theMenu3 {
+        grid-area: men3;
+        /* border: thin solid blue; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.7rem;
+        padding: 0.5vw;
+        border: thin solid white;
+    } 
+
+    .theMenu4 {
+        grid-area: men4;
+        /* border: thin solid blue; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.7rem;
+        padding: 0.5vw;
+        border: thin solid white;
+    } 
+
+    .theMenu5 {
+        grid-area: men5;
+        /* border: thin solid blue; */
+        background-color: #ff8800;
+        /* margin: 0.33vw; */
+        text-align: center;
+        font-size: 0.7rem;
+        padding: 0.5vw;
+        border: thin solid white;
+    } 
+
+    .theMain {
+        grid-area: main;
+        float: left; /* non può avere elementi flottanti alla sx */
+        background-color: #eeeeff;
+    }
+
+    .theFooter {
+        grid-area: footer;
+        /* border-color: #ff8800; */
+        color: black;
+        background-color: #eeeeff;
+        /* border-style: groove; */
+        /* border-width: medium; */
+        clear: both;
+    }
+
+    .userInfo{
+        font-weight: bold;
+        text-decoration: none;
+        grid-area: info;
+        background-color: #ff8800;
+        text-align: right;
+        float: right;
+        font-size: 0.7rem;
+        border: thin solid white;
+    }
+
+
+    .grid-container {
+        display: grid;
+        grid-template-areas: 'header'
+                             'info'
+                             'men1'
+                             'men2'
+                             'men3' 
+                             'men4' 
+                             'men5' 
+                             'main'
+                             'main'
+                             'main'
+                             'main'
+                             'main'
+                             'footer'
+    }
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ft {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+}
+
+.centered {
+    text-align: center;
+}
+
+.tblCentered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: thin solid black;
+    text-align: center;
+}
+.tdName {
+    text-align: left;
+}
+.tbl {
+    width: 50%;
+}
+
+th {
+    background-color: #002266;
+    color: white;
+}
+
+.err {
+    color: red;
+    font-weight: bold;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: black;
+}
+
+.emAdd:hover {
+    color: #AA1100;
+}
+
+#loginForm {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menItem {
+    text-decoration: none;
+    color: black;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.theMenu1:hover, .theMenu2:hover, .theMenu3:hover, .theMenu4:hover, .theMenu5:hover {
+    background-color: #eeeeff;
+    font-weight: bolder;
+    /* font-size: 90%; */
+}
+
+.logout {
+    /* text-decoration: none; */
+    color: black;
+}
+
+.contenitoreCorso{
+    background-color: #ffffee;
+    color: black;
+    text-align: justify;
+    border-radius: 1.5em;
+    width: auto;
+    padding: 1.5em;
+    margin: 2em;
+    display: block;
+}
+
+button {
+    background-color: #002266;
+    color: white;
+    border-radius: 1em;
+    font-weight: bold;
+    margin: 0.3em;
+    padding: 0.5em;
+}
